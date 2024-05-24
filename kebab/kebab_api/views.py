@@ -58,7 +58,7 @@ class LoginView(APIView):
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
-        response.delete_cookie()
+        response.delete_cookie(key='token')
 
         response.data = {
             "message": 'logout'

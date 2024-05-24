@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser
 
 class Roles(models.Model):
     id = models.AutoField(primary_key=True)
-    role_name = models.CharField(max_length=32, blank=True, null=True)
+    role_name = models.CharField(max_length=32, blank=True, null=False)
 
     def __str__(self):
         return self.role_name
@@ -20,15 +20,13 @@ class Users(AbstractBaseUser):
     login = models.CharField(64, unique=True)
     password = models.CharField(256)
     role = models.ForeignKey(Roles, on_delete=models.CASCADE)
-    username = None
 
-    USERNAME_FIELD = 'login'
-    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.login
 
     class Meta:
+        managed = False
         db_table = 'users'
 
 
