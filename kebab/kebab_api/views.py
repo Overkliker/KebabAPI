@@ -14,7 +14,6 @@ class SetPagination(PageNumberPagination):
     max_page_size = 100
 
 
-
 class RegisterView(APIView):
 
     def post(self, request):
